@@ -1,6 +1,6 @@
 # TaskWiz ✨
 
-TaskWiz is a sleek and intuitive To-Do list application built with React. Manage your daily tasks with ease through a modern, responsive interface.
+TaskWiz is a mobile-first sleek and intuitive To-Do list application built with React. Manage your daily tasks with ease through a modern, responsive interface.
 
 ## Features 🚀
 
