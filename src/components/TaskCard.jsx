@@ -27,9 +27,9 @@ const TaskCard = ({ task, id, completed, deleteTask, toggleComplete }) => {
       <motion.div
         onPointerDown={(e) => dragControls.start(e)}
         layout
-        className="w-full py-3 px-4 sm:px-6 md:px-7 bg-gray-600 rounded-lg 
-                   shadow-xl shadow-slate-800/50 transition-all
-                   hover:shadow-slate-800/70"
+        className="w-full py-3 px-4 sm:px-6 md:px-7 rounded-lg 
+                   shadow-xl shadow-slate-600/20 transition-all
+                   hover:shadow-slate-600/50 border-2 border-[#ffb3005f]"
       >
         <div className='flex gap-3 sm:gap-4 md:gap-5 items-center justify-between select-none'>
           <input
