@@ -43,7 +43,7 @@ const App = () => {
   }
 
   return (
-    <div className="wrapper min-h-screen px-4 sm:px-6 md:px-8 py-2 bg-zinc-800 flex flex-col justify-between items-center gap-6 md:gap-8 text-gray-900 dark:text-[#ffb300] dark:selection:text-white antialiased">
+    <div className="wrapper min-h-screen px-4 sm:px-6 md:px-8 py-2 dark:bg-zinc-800 flex flex-col justify-between items-center gap-6 md:gap-8 text-gray-900 dark:text-[#ffb300] dark:selection:text-white antialiased">
       <div className="topbar w-full max-w-3xl mx-auto flex flex-col flex-nowrap justify-evenly mt-4 gap-6 md:gap-8">
         <Header/>
         <AddTaskForm handleClick={handleClick} newTaskRef={newTaskRef}/>
