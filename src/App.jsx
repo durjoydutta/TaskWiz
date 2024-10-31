@@ -1,8 +1,9 @@
-import { useState ,useRef} from 'react'
-import AddTaskForm from './components/AddTaskForm'
-import Header from './components/Header'
-import TaskCard from './components/TaskCard'
-import Footer from './components/Footer'
+import { useState, useRef } from 'react';
+import { Reorder } from 'framer-motion';
+import AddTaskForm from './components/AddTaskForm';
+import Header from './components/Header';
+import TaskCard from './components/TaskCard';
+import Footer from './components/Footer';
 
 const App = () => {
   const [toDoList, setToDoList] = useState([]);
@@ -25,36 +26,53 @@ const App = () => {
       completed: false
     }];
     setToDoList(newList);
-    console.log(newList);
     newTaskRef.current.value = "";
   }
 
   const deleteTask = (id) => {
     const newList = toDoList.filter((item) => item.id !== id);
     setToDoList(newList);
-    console.log(newList)
+  }
+
+  const toggleComplete = (id) => {
+    setToDoList(prev => 
+      prev.map(item => 
+        item.id === id ? { ...item, completed: !item.completed } : item
+      )
+    );
   }
 
   return (
-    <>
-    <div className="wrapper min-w-screen min-h-screen px-10 py-2 bg-zinc-800 flex flex-col justify-between items-center gap-10 text-gray-900 dark:text-[#ffb300] dark:selection:text-white antialiased overflow-y-scroll">
-      
-      <div className="topbar w-full flex flex-col flex-nowrap justify-evenly mt-4 gap-10">
+    <div className="wrapper min-h-screen px-4 sm:px-6 md:px-8 py-2 bg-zinc-800 flex flex-col justify-between items-center gap-6 md:gap-8 text-gray-900 dark:text-[#ffb300] dark:selection:text-white antialiased">
+      <div className="topbar w-full max-w-3xl mx-auto flex flex-col flex-nowrap justify-evenly mt-4 gap-6 md:gap-8">
         <Header/>
-        <AddTaskForm handleClick = {handleClick} newTaskRef = {newTaskRef}/>
-        <div className="divider w-full h-1 bg-gray-600"></div>
+        <AddTaskForm handleClick={handleClick} newTaskRef={newTaskRef}/>
+        <div className="divider w-full h-1 bg-gray-600 rounded-full"></div>
       </div>
 
-      <div className="main w-full flex flex-col grow gap-5">
-        {toDoList.map(({task, id})=> {
-          return <TaskCard task = {task} id = {id} key = {id} deleteTask = {deleteTask}/>
-        })}
+      <div className="main w-full max-w-3xl mx-auto flex flex-col grow gap-4">
+        <Reorder.Group 
+          axis="y" 
+          values={toDoList} 
+          onReorder={setToDoList} 
+          className="flex flex-col gap-4"
+        >
+          {toDoList.map((item) => (
+            <TaskCard 
+              key={item.id}
+              task={item.task}
+              id={item.id}
+              completed={item.completed}
+              deleteTask={deleteTask}
+              toggleComplete={toggleComplete}
+            />
+          ))}
+        </Reorder.Group>
       </div>
 
       <Footer/>
     </div>
-    </>
-  )
+  );
 }
 
-export default App
+export default App;
