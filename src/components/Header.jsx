@@ -36,7 +36,7 @@ function Header() {
             <img
               src={
                 user?.photoURL
-                  ? user.currentUser?.photoURL
+                  ? user?.photoURL
                   : Account
               }
               alt="Profile"
