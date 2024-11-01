@@ -17,13 +17,14 @@ const Home = ({
       </div>
       <div className="main relative w-full max-w-3xl mx-auto flex flex-col grow flex-nowrap gap-4">
         <div
-          className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full text-center font-semibold
-                        text-[6rem] leading-tight sm:text-[8rem] 
+          className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full text-center font-bold
+                        text-[6rem] leading-tight
                         text-[#9c989815] dark:text-[#1f1b1b65] m-2"
         >
-          <h1>Your</h1>
-          <h1>TODO</h1>
-          <h1>App</h1>
+          <h1>Get</h1>
+          <h1>Tasks</h1>
+          <h1>Done</h1>
+          <h1>Fast</h1>
         </div>
         <Reorder.Group
           axis="y"

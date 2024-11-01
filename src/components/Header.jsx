@@ -44,6 +44,7 @@ function Header() {
             {auth.currentUser?.displayName
               ? auth.currentUser?.displayName
               : "Login"}
+            console.log(auth.currentUser?.displayName);
           </span>
         </Link>
       </div>
