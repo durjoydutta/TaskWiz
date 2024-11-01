@@ -43,8 +43,7 @@ function Header() {
           <span className="text-xs sm:text-sm">
             {auth.currentUser?.displayName
               ? auth.currentUser?.displayName
-              : "Login"}
-            console.log(auth.currentUser?.displayName);
+              : ("Login")}
           </span>
         </Link>
       </div>
