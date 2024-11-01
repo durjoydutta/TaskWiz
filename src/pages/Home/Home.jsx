@@ -12,20 +12,18 @@ const Home = ({
 }) => {
   return (
     <>
-      <div className="topbar w-full max-w-3xl mx-auto flex flex-col flex-nowrap justify-evenly mt-4 gap-6 md:gap-8">
+      <div className="topbar w-full max-w-3xl mx-auto flex flex-col justify-evenly mt-4 gap-6 md:gap-8">
         <AddTaskForm handleClick={handleClick} newTaskRef={newTaskRef} />
       </div>
-      <div className="divider w-full max-w-3xl h-1 bg-gray-600 rounded-full"></div>
       <div className="main relative w-full max-w-3xl mx-auto flex flex-col grow flex-nowrap gap-4">
-        <div className="watermark-container flex justify-center items-center h-full w-full">
-          <h1
-            className="absolute z-[1] top-1/2 left-1/2-translate-x-1/2 -translate-y-1/2 
-                        text-center text-[7rem] sm:text-[10rem] md:text-[12rem] font-bold
-                        leading-none tracking-wider sm:leading-[10rem] sm:tracking-widest 
+        <div
+          className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full text-center font-semibold
+                        text-[6rem] leading-tight sm:text-[8rem] 
                         text-[#9c989815] dark:text-[#1f1b1b65] m-2"
-          >
-            THE TODO APP
-          </h1>
+        >
+          <h1>Your</h1>
+          <h1>TODO</h1>
+          <h1>App</h1>
         </div>
         <Reorder.Group
           axis="y"

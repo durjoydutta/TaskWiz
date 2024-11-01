@@ -1,31 +1,53 @@
 import Logo from "../../src/assets/todo.svg";
-import Account from "../assets/account.svg"
+import Account from "../assets/account.svg";
 import { Link } from "react-router-dom";
-import {auth} from "../pages/Login"
+import { auth } from "../pages/Login";
 
 function Header() {
   return (
-    <div className="header flex items-center justify-between w-full max-w-3xl">
-      <div className="flex flex-col items-center gap-2 mt-3 w-full">
-        <Link to="/">
-          <div className="flex items-center justify-center gap-2 relative">
-            <img src={Logo} alt="Logo" className="w-8 sm:w-10 transition-all" />
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black">
-              TaskWiz
-            </h1>
-            <sup className="absolute top-0 -right-4 text-xs sm:text-sm">™</sup>
-          </div>
-        </Link>
-        <span className="flex items-center justify-center gap-1 text-xs sm:text-sm transform translate-x-12">
-          <span className="dark:text-slate-400">by</span>
-          <span className="dark:selection:text-yellow-500">@ddc</span>
-        </span>
-      </div>
-      <Link to="/login">
-        <div className="profile rounded-full w-10 h-10 flex items-center justify-center ">
-          <img src={(auth.currentUser?.photoURL) ? auth.currentUser?.photoURL : Account} alt="Profile" className="w-6 h-6" />
+    <div className="header flex flex-col w-full max-w-3xl mx-auto gap-3">
+      <div className="flex items-center justify-between w-full max-w-3xl">
+        <div className="flex flex-col items-center gap-2 mt-3 w-full">
+          <Link to="/">
+            <div className="flex items-center justify-center gap-2 relative">
+              <img
+                src={Logo}
+                alt="Logo"
+                className="w-8 sm:w-10 transition-all"
+              />
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black">
+                TaskWiz
+              </h1>
+              <sup className="absolute top-0 -right-4 text-xs sm:text-sm">
+                ™
+              </sup>
+            </div>
+          </Link>
+          <span className="flex items-center justify-center gap-1 text-xs sm:text-sm transform translate-x-12">
+            <span className="dark:text-slate-400">by</span>
+            <span className="dark:selection:text-yellow-500">@ddc</span>
+          </span>
         </div>
-      </Link>
+        <Link to="/login">
+          <div className="profile w-8 h-6 md:w-10 md:h-8 flex flex-col items-center justify-center m-2">
+            <img
+              src={
+                auth.currentUser?.photoURL
+                  ? auth.currentUser?.photoURL
+                  : Account
+              }
+              alt="Profile"
+              className="mr-4"
+            />
+          </div>
+          <span className="text-xs sm:text-sm">
+            {auth.currentUser?.displayName
+              ? auth.currentUser?.displayName
+              : "Login"}
+          </span>
+        </Link>
+      </div>
+      <div className="divider w-full h-1 bg-gray-600 rounded-full"></div>
     </div>
   );
 }
