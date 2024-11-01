@@ -16,10 +16,10 @@ function AddTaskForm({ handleClick, newTaskRef }) {
                    rounded-full dark:bg-gray-600 shadow-lg shadow-slate-800/30
                    hover:shadow-xl hover:shadow-slate-800/40 transition-all
                    focus-within:ring-2 focus-within:ring-[#ffb300]/50"
-        initial={{ scale: 0.98 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.01 }}
-        whileTap={{ scale: 0.99 }}
+        // initial={{ scale: 0.98 }}
+        // animate={{ scale: 1 }}
+        // whileHover={{ scale: 1.01 }}
+        // whileTap={{ scale: 0.99 }}
       >
         <input 
           type="text" 

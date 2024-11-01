@@ -46,16 +46,19 @@ const App = () => {
     <div className="wrapper min-h-screen px-4 sm:px-6 md:px-8 py-2 dark:bg-zinc-800 flex flex-col justify-between items-center gap-6 md:gap-8 text-gray-900 dark:text-[#ffb300] dark:selection:text-white antialiased">
       <div className="topbar w-full max-w-3xl mx-auto flex flex-col flex-nowrap justify-evenly mt-4 gap-6 md:gap-8">
         <Header/>
-        <AddTaskForm handleClick={handleClick} newTaskRef={newTaskRef}/>
-        <div className="divider w-full h-1 bg-gray-600 rounded-full"></div>
+        <AddTaskForm handleClick={handleClick} newTaskRef={newTaskRef}/>        
       </div>
+      <div className="divider w-full h-1 bg-gray-600 rounded-full"></div>
+      <div className="main relative w-full max-w-3xl mx-auto flex flex-col grow gap-4">
+      <h1 className="absolute z-[1] top-1/2 left-1/2-translate-x-1/2 -translate-y-1/2 
+                    text-center text-[8rem] md:text-[10rem] font-semibold
+                    leading-none tracking-wider dark:text-[#1f1d1d8a]">THE TODO APP</h1>
 
-      <div className="main w-full max-w-3xl mx-auto flex flex-col grow gap-4">
         <Reorder.Group 
           axis="y" 
           values={toDoList} 
           onReorder={setToDoList} 
-          className="flex flex-col gap-4"
+          className="z-[2] flex flex-col gap-4"
         >
           {toDoList.map((item) => (
             <TaskCard 

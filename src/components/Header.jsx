@@ -12,7 +12,7 @@ function Header() {
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-black">TaskWiz</h1>
         <sup className="absolute top-0 -right-4 text-xs sm:text-sm">™</sup>
       </div>
-      <span className="flex items-center justify-center gap-1 text-xs sm:text-sm transform -translate-x-1">
+      <span className="flex items-center justify-center gap-1 text-xs sm:text-sm transform translate-x-12">
         <span className="dark:text-slate-400">by</span>
         <span className="dark:selection:text-yellow-500">@ddc</span>
       </span>
