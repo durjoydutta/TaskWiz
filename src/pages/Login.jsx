@@ -2,7 +2,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { firebaseApp } from "../../firebase.config";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
-import { div } from "framer-motion/client";
+import { useEffect, useRef} from 'react';
 
 export const auth = getAuth(firebaseApp);
 export const provider = new GoogleAuthProvider();
@@ -38,6 +38,12 @@ const Login = () => {
     auth.signOut();
     alert("You are now signed out.");
   };
+
+  useEffect(() => {
+    // This useEffect will run whenever auth.currentUser changes
+    // Causing the component to re-render
+  }, [auth.currentUser]);
+  
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-[4rem]">
