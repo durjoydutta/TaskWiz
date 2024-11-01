@@ -19,6 +19,7 @@ const login = () => {
       const user = result.user;
       // ... (Your code to handle successful sign-in) ...
       console.log("Sign-in successful:", user);
+      window.location.reload();
       navigate("/");
 
     } catch (error) {

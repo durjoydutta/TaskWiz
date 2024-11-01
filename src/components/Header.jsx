@@ -5,7 +5,7 @@ import { auth } from "../pages/Login";
 
 function Header() {
   return (
-    <div className="header flex flex-col w-full max-w-3xl mx-auto gap-3">
+    <div className="header flex flex-col w-full max-w-3xl mx-auto gap-3 px-2">
       <div className="flex items-center justify-between w-full max-w-3xl">
         <div className="flex flex-col items-center gap-2 mt-3 w-full">
           <Link to="/">
@@ -29,7 +29,7 @@ function Header() {
           </span>
         </div>
         <Link to="/login">
-          <div className="profile w-8 h-6 md:w-10 md:h-8 flex flex-col items-center justify-center m-2">
+          <div className="profile w-12 p-2 flex flex-col items-center justify-center text-center">
             <img
               src={
                 auth.currentUser?.photoURL
@@ -37,14 +37,14 @@ function Header() {
                   : Account
               }
               alt="Profile"
-              className="mr-4"
+              className="rounded-full w-10 h-10 object-cover"
             />
+            <p className="text-xs sm:text-sm max-w-12 truncate ...">
+              {auth.currentUser?.displayName
+                ? auth.currentUser?.displayName
+                : "Login"}
+            </p>
           </div>
-          <span className="text-xs sm:text-sm">
-            {auth.currentUser?.displayName
-              ? auth.currentUser?.displayName
-              : ("Login")}
-          </span>
         </Link>
       </div>
       <div className="divider w-full h-1 bg-gray-600 rounded-full"></div>
