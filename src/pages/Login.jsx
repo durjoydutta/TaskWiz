@@ -36,6 +36,7 @@ const Login = () => {
 
   const signOut = () => {
     auth.signOut();
+    alert("You are now signed out.");
   };
 
   return (
