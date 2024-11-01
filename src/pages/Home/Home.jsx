@@ -34,7 +34,7 @@ const Home = ({
           axis="y"
           values={toDoList}
           onReorder={setToDoList}
-          className="z-[2] flex flex-col order-last gap-4 list-none md:grid md:grid-cols-2"
+          className="z-[2] flex flex-col order-last gap-4 list-none sm:grid sm:grid-cols-2"
         >
           {toDoList.map((item) => (
             <TaskCard

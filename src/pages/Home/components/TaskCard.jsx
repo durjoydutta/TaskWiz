@@ -8,7 +8,7 @@ const TaskCard = ({ task, id, completed, deleteTask, toggleComplete }) => {
     <Reorder.Item
       value={{ id, task, completed }}
       id={id}
-      className="w-full cursor-move list-none grid-flow-row" 
+      className="w-full cursor-move list-none sm:grid-flow-row" 
       dragListener={false}
       dragControls={dragControls}
       initial={{ opacity: 0, y: 20 }}
