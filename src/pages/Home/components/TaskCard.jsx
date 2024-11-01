@@ -44,7 +44,7 @@ const TaskCard = ({ task, id, completed, deleteTask, toggleComplete }) => {
           />
           <label
             htmlFor={id}
-            className={`ml-2 sm:ml-3 text-sm md:text-base font-medium flex-grow 
+            className={`ml-2 sm:ml-3 text-sm md:text-base font-medium flex-grow break-all
                        ${completed && "line-through opacity-60"}`}
           >
             {task}
