@@ -23,9 +23,7 @@ function Header() {
       </div>
       <Link to="/login">
         <div className="profile rounded-full w-10 h-10 flex items-center justify-center ">
-          {
-            (auth.currentUser != null) ? (<img src={auth.currentUser.photoURL}/>) : (<img src={Account} alt="Logo" className="w-8 sm:w-10 transition-all" />) 
-          }
+          <img src={(auth.currentUser?.photoURL) ? auth.currentUser?.photoURL : Account} alt="Profile" className="w-6 h-6" />
         </div>
       </Link>
     </div>
