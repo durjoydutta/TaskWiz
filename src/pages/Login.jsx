@@ -3,10 +3,11 @@ import { firebaseApp } from "../../firebase.config";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 
+
 export const auth = getAuth(firebaseApp);
 export const provider = new GoogleAuthProvider();
 
-const login = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   async function signInWithGoogle() {
@@ -56,4 +57,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

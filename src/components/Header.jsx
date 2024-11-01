@@ -2,8 +2,11 @@ import Logo from "../../src/assets/todo.svg";
 import Account from "../assets/account.svg";
 import { Link } from "react-router-dom";
 import { auth } from "../pages/Login";
+import {useAuthState} from 'react-firebase-hooks/auth';
 
 function Header() {
+  const [user] = useAuthState(auth);
+
   return (
     <div className="header flex flex-col w-full max-w-3xl mt-3 gap-3 px-2">
       <div className="flex items-center justify-between w-full max-w-3xl">
@@ -32,16 +35,16 @@ function Header() {
           <div className="profile w-15 h-15 mt-3 flex flex-col gap-1.5 items-center justify-center text-center">
             <img
               src={
-                auth.currentUser?.photoURL
-                  ? auth.currentUser?.photoURL
+                user?.photoURL
+                  ? user.currentUser?.photoURL
                   : Account
               }
               alt="Profile"
               className="rounded-full w-8 h-8 object-cover"
             />
             <p className="text-xs sm:text-sm max-w-12 overflow-hidden truncate ... ">
-              {auth.currentUser?.displayName
-                ? auth.currentUser?.displayName
+              {user?.displayName
+                ? user?.displayName
                 : "Login"}
             </p>
           </div>
