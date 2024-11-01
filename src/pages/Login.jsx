@@ -7,7 +7,7 @@ import { FaGoogle } from "react-icons/fa";
 export const auth = getAuth(firebaseApp);
 export const provider = new GoogleAuthProvider();
 
-const Login = () => {
+const Login = ({setLogInStatus}) => {
   const navigate = useNavigate();
 
   async function signInWithGoogle() {
@@ -18,7 +18,7 @@ const Login = () => {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
-      // ... (Your code to handle successful sign-in) ...
+      setLogInStatus(true);
       console.log("Sign-in successful:", user);
       navigate("/");
     } catch (error) {
