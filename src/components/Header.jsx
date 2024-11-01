@@ -7,7 +7,7 @@ function Header() {
   return (
     <div className="header flex flex-col w-full max-w-3xl mx-auto gap-3 px-2">
       <div className="flex items-center justify-between w-full max-w-3xl">
-        <div className="flex flex-col items-center gap-2 mt-3 w-full">
+        <div className="flex flex-col items-center justify-center gap-2 mt-3 w-full">
           <Link to="/">
             <div className="flex items-center justify-center gap-2 relative">
               <img
@@ -29,7 +29,7 @@ function Header() {
           </span>
         </div>
         <Link to="/login">
-          <div className="profile w-12 p-2 flex flex-col items-center justify-center text-center">
+          <div className="profile w-15 h-15 mt-3 flex flex-col gap-1.5 items-center justify-center text-center">
             <img
               src={
                 auth.currentUser?.photoURL
@@ -37,12 +37,12 @@ function Header() {
                   : Account
               }
               alt="Profile"
-              className="rounded-full w-10 h-10 object-cover"
+              className="rounded-full w-8 h-8 object-cover"
             />
-            <p className="text-xs sm:text-sm max-w-12 truncate ...">
+            <p className="text-xs sm:text-sm max-w-12 truncate ... overflow-hidden">
               {auth.currentUser?.displayName
                 ? auth.currentUser?.displayName
-                : "Login"}
+                : "Loginsdfsd sdfds"}
             </p>
           </div>
         </Link>
