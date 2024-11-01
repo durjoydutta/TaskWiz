@@ -32,7 +32,7 @@ function Header() {
           </span>
         </div>
         <Link to="/login">
-          <div className="profile w-15 h-15 mt-3 flex flex-col gap-1.5 items-center justify-center text-center">
+          <div className="profile w-18 h-18 mt-3 mr-3 flex flex-col gap-1.5 items-center justify-center text-center">
             <img
               src={
                 user?.photoURL
@@ -40,7 +40,7 @@ function Header() {
                   : Account
               }
               alt="Profile"
-              className="rounded-full w-8 h-8 object-cover"
+              className="rounded-full w-10 h-10 object-cover"
             />
             <p className="text-xs sm:text-sm max-w-12 overflow-hidden truncate ... ">
               {user?.displayName

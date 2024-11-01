@@ -11,16 +11,16 @@ const Login = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    // Set up auth state listener
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("Auth state changed:", currentUser);
-      setUser(currentUser);
-    });
+  // useEffect(() => {
+  //   // Set up auth state listener
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     console.log("Auth state changed:", currentUser);
+  //     setUser(currentUser);
+  //   });
 
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
-  }, []);
+  //   // Cleanup subscription on unmount
+  //   return () => unsubscribe();
+  // }, []);
 
   async function signInWithGoogle() {
     try {
