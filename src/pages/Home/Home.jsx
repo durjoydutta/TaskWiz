@@ -1,8 +1,6 @@
 import AddTaskForm from "./components/AddTaskForm";
 import TaskCard from "./components/TaskCard";
 import { Reorder } from "framer-motion";
-import { useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
 
 const Home = ({
   toDoList,
@@ -11,16 +9,8 @@ const Home = ({
   handleClick,
   deleteTask,
   toggleComplete,
-  logInStatus
 }) => {
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!logInStatus) {
-      navigate('/login');
-    }
-  }, [logInStatus, navigate]);
 
   return (
     <>

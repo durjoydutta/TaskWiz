@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [toDoList, setToDoList] = useState([]);
-  const [logInStatus, setLoginStatus] = useState(false);
+  // const [logInStatus, setLoginStatus] = useState(false);
   const newTaskRef = useRef(null);
 
   const handleClick = (e) => {
@@ -33,9 +33,6 @@ const App = () => {
     newTaskRef.current.value = "";
   };
 
-  const setLogin = (status) => {
-    setLoginStatus(status);
-  };
 
   const deleteTask = (id) => {
     const newList = toDoList.filter((item) => item.id !== id);
@@ -64,11 +61,10 @@ const App = () => {
                 handleClick={handleClick}
                 deleteTask={deleteTask}
                 toggleComplete={toggleComplete}
-                loginStatus={logInStatus}
               />
             }
           />
-          <Route path="/login" element={<Login setLogInStatus={setLogin}/>} />
+          <Route path="/login" element={<Login/>} />
         </Routes>
         <Footer />
       </Router>
