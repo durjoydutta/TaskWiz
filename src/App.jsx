@@ -43,7 +43,7 @@ const App = () => {
   }
 
   return (
-    <div className="wrapper min-h-screen px-4 sm:px-6 md:px-8 py-2 dark:bg-[#0c0c0c] flex flex-col justify-between items-center gap-6 md:gap-8 text-gray-900 dark:text-[#ffa31a] dark:selection:text-white antialiased">
+    <div className="wrapper min-h-screen px-4 sm:px-6 md:px-8 py-2 dark:bg-[#070707e3] flex flex-col justify-between items-center gap-6 md:gap-8 text-gray-900 dark:text-[#ffb300] dark:selection:text-white antialiased">
       <Router>
         <Header/>
         <Routes>

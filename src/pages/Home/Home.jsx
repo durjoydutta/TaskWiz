@@ -24,7 +24,7 @@ const Home = ({
           <h1>Get</h1>
           <h1>Tasks</h1>
           <h1>Done</h1>
-          <h1>Fast</h1>
+          <h1>Fast!</h1>
         </div>
         <Reorder.Group
           axis="y"
