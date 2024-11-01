@@ -2,7 +2,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { firebaseApp } from "../../firebase.config";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
-
+import { div } from "framer-motion/client";
 
 export const auth = getAuth(firebaseApp);
 export const provider = new GoogleAuthProvider();
@@ -34,6 +34,10 @@ const Login = () => {
     }
   }
 
+  const signOut = () => {
+    auth.signOut();
+  };
+
   return (
     <div className="w-full flex flex-col justify-center items-center gap-[4rem]">
       <div className="w-full flex flex-col gap-5 text-[3rem] font-bold tracking-widest leading-tight text-center dark:text-zinc-400">
@@ -44,13 +48,19 @@ const Login = () => {
         <h1>Fast!</h1>
       </div>
       <button
-        onClick={signInWithGoogle}
-        className="loginbutton font-bold rounded-[3em] text-lg  w-full max-w-xs h-16 
+        onClick={auth.currentUser ? signOut : signInWithGoogle}
+        className="loginbutton font-bold rounded-[3em] text-2xl  w-full max-w-xs h-16 
        bg-[#ffa31a] text-[#222121de] flex  justify-start items-center text-center gap-3 shadow-inner shadow-gray-500
         hover:bg-[#ffb300] transition-colors cursor-pointer px-5 py-2 box-border border-2 border-gray-400"
       >
-        <FaGoogle className="text-3xl" />
-        <label className="grow mr-12">Login</label>
+        {auth.currentUser ? (
+          <label className="grow">Sign Out</label>
+        ) : (
+          <div className="flex gap-2 justify-between w-full">
+            <FaGoogle className="text-3xl" />
+            <label className="grow mr-10">Login</label>
+          </div>
+        )}
       </button>
     </div>
   );
