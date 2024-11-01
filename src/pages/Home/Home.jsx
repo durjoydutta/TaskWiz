@@ -3,8 +3,6 @@ import TaskCard from "./components/TaskCard";
 import { Reorder } from "framer-motion";
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
-import {useAuthState} from 'react-firebase-hooks/auth';
-import { auth } from "../Login";
 
 const Home = ({
   toDoList,
@@ -16,9 +14,9 @@ const Home = ({
 }) => {
 
   const navigate = useNavigate();
-  const [user] = useAuthState(auth);
 
   const isUserLoggedIn = () => {
+    const user = localStorage.getItem('user');
     if (!user) {
       navigate('/login');
     }
