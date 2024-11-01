@@ -28,12 +28,13 @@ const TaskCard = ({ task, id, completed, deleteTask, toggleComplete }) => {
         onPointerDown={(e) => dragControls.start(e)}
         layout
         className="w-full py-3 px-4 sm:px-6 md:px-7 rounded-lg 
-                   shadow-xl shadow-slate-600/20 transition-all
+                   shadow-xl bg-slate-100 dark:bg-zinc-900/50 shadow-slate-600/20 transition-all
                    hover:shadow-slate-600/50 border-2 border-[#ffb3005f]"
       >
         <div className='flex gap-3 sm:gap-4 md:gap-5 items-center justify-between select-none'>
           <input
             type="checkbox"
+            id = {id}
             checked={completed}
             onChange={() => toggleComplete(id)}
             className="w-4 h-4 accent-[#ffb300] border-gray-300 rounded 
@@ -41,6 +42,7 @@ const TaskCard = ({ task, id, completed, deleteTask, toggleComplete }) => {
                      dark:bg-gray-700 dark:border-gray-600"
           />
           <label 
+            htmlFor= {id}
             className={`ml-2 sm:ml-3 text-sm md:text-base font-medium flex-grow
                        ${completed && 'line-through opacity-60'}`}
           >

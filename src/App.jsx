@@ -43,17 +43,21 @@ const App = () => {
   }
 
   return (
-    <div className="wrapper min-h-screen px-4 sm:px-6 md:px-8 py-2 dark:bg-zinc-800 flex flex-col justify-between items-center gap-6 md:gap-8 text-gray-900 dark:text-[#ffb300] dark:selection:text-white antialiased">
+    <div className="wrapper min-h-screen px-4 sm:px-6 md:px-8 py-2 dark:bg-[#0c0c0c] flex flex-col justify-between items-center gap-6 md:gap-8 text-gray-900 dark:text-[#ffb300] dark:selection:text-white antialiased">
       <div className="topbar w-full max-w-3xl mx-auto flex flex-col flex-nowrap justify-evenly mt-4 gap-6 md:gap-8">
         <Header/>
         <AddTaskForm handleClick={handleClick} newTaskRef={newTaskRef}/>        
       </div>
       <div className="divider w-full h-1 bg-gray-600 rounded-full"></div>
-      <div className="main relative w-full max-w-3xl mx-auto flex flex-col grow gap-4">
-      <h1 className="absolute z-[1] top-1/2 left-1/2-translate-x-1/2 -translate-y-1/2 
-                    text-center text-[8rem] md:text-[10rem] font-semibold
-                    leading-none tracking-wider dark:text-[#1f1d1d8a]">THE TODO APP</h1>
-
+      <div className="main relative w-full max-w-3xl mx-auto flex flex-col grow flex-nowrap gap-4">    
+        <div className="watermark-containe flex justify-center items-center h-full w-full">
+          <h1 className="absolute z-[1] top-1/2 left-1/2-translate-x-1/2 -translate-y-1/2 
+                        text-center text-[7rem] sm:text-[10rem] md:text-[12rem] font-bold
+                        leading-none tracking-wider sm:leading-[10rem] sm:tracking-widest 
+                        text-[#9c989815] dark:text-[#1f1b1b65] m-2">
+                          THE TODO APP
+          </h1>
+        </div>
         <Reorder.Group 
           axis="y" 
           values={toDoList} 
