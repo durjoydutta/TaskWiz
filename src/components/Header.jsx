@@ -1,4 +1,4 @@
-import Logo from "/home/user/testreact/src/assets/todo.svg";
+import Logo from "../../src/assets/todo.svg";
 import Account from "../assets/account.svg"
 import { Link } from "react-router-dom";
 import {auth} from "../pages/Login"
