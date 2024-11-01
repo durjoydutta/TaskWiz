@@ -36,14 +36,12 @@ const Login = () => {
 
   const signOut = () => {
     auth.signOut();
-    alert("You are now signed out.");
   };
-
-  useEffect(() => {
-    // This useEffect will run whenever auth.currentUser changes
-    // Causing the component to re-render
-  }, [auth.currentUser]);
   
+  useEffect(() => {
+    console.log("auth.currentUser changed:", auth.currentUser); 
+}, []);
+
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-[4rem]">
