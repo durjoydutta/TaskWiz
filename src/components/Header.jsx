@@ -5,7 +5,7 @@ import { auth } from "../pages/Login";
 
 function Header() {
   return (
-    <div className="header flex flex-col w-full max-w-3xl mx-auto gap-3 px-2">
+    <div className="header flex flex-col w-full max-w-3xl mt-3 gap-3 px-2">
       <div className="flex items-center justify-between w-full max-w-3xl">
         <div className="flex flex-col items-center justify-center gap-2 mt-3 w-full">
           <Link to="/">
@@ -47,7 +47,7 @@ function Header() {
           </div>
         </Link>
       </div>
-      <div className="divider w-full h-1 bg-gray-600 rounded-full"></div>
+      <div className="divider mt-5 w-full h-1 bg-gray-600 rounded-full"></div>
     </div>
   );
 }

@@ -12,7 +12,7 @@ function AddTaskForm({ handleClick, newTaskRef }) {
       }}
     >
       <motion.div 
-        className="flex items-center gap-2 py-2 px-4 sm:px-6 md:px-7 h-14 sm:h-16 md:h-18 
+        className="flex items-center gap-2 py-2 px-6 sm:px-6 md:px-7 h-14 sm:h-16 md:h-18 
                    rounded-full dark:bg-[#434e3c73] shadow-lg shadow-slate-800/30
                    hover:shadow-xl hover:shadow-slate-800/40 transition-all
                    focus-within:ring-2 focus-within:ring-[#ffb300]/50"
