@@ -39,10 +39,10 @@ function Header() {
               alt="Profile"
               className="rounded-full w-8 h-8 object-cover"
             />
-            <p className="text-xs sm:text-sm max-w-12 truncate ... overflow-hidden">
+            <p className="text-xs sm:text-sm max-w-12 overflow-hidden truncate ... ">
               {auth.currentUser?.displayName
                 ? auth.currentUser?.displayName
-                : "Loginsdfsd sdfds"}
+                : "Login"}
             </p>
           </div>
         </Link>
