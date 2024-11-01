@@ -1,6 +1,7 @@
 import AddTaskForm from "./components/AddTaskForm";
 import TaskCard from "./components/TaskCard";
 import { Reorder } from "framer-motion";
+import { useNavigate } from 'react-router-dom'
 
 const Home = ({
   toDoList,
@@ -10,8 +11,20 @@ const Home = ({
   deleteTask,
   toggleComplete,
 }) => {
+  const navigate = useNavigate();
+
+  const isUserLoggedIn = ()=> {
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+  }
+
   return (
     <>
+      {isUserLoggedIn}
       <div className="topbar w-full max-w-3xl mx-auto flex flex-col justify-evenly mt-4 gap-6 md:gap-8">
         <AddTaskForm handleClick={handleClick} newTaskRef={newTaskRef} />
       </div>
