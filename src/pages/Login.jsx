@@ -3,23 +3,25 @@ import { auth } from "../../firebase.config";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import {useAuthState} from 'react-firebase-hooks/auth';
-// import {useEffect} from 'react'
+import {useEffect, useRef} from 'react'
 
 const provider = new GoogleAuthProvider();
 
 const Login = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
+  const signInSuccess = useRef(false);
 
 
   async function signInWithGoogle() {
     try {
       const result = await signInWithPopup(auth, provider);
-      const credential = provider.credentialFromResult(result);
-      const token = credential.accessToken;
+      // const credential = provider.credentialFromResult(result);
+      // const token = credential.accessToken;
       const user = result.user;
       console.log("Sign-in successful:", user);
       navigate("/");
+      signInSuccess(true);
     } catch (error) {
       if (error.code === "auth/popup-closed-by-user") {
         console.log("Sign-in popup closed by user.");
@@ -39,6 +41,13 @@ const Login = () => {
       alert("Error signing you out", error);
     }
   };
+
+  useEffect(() => {
+    if (user && signInSuccess) {
+      navigate("/");
+      signInSuccess(false);
+    }
+  }, [user, signInSuccess, navigate]);
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-[4rem]">
