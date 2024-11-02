@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TestPage from "./pages/TestDebug";
+import ProtectedRoute from './ProtectedRoute';
 
 const App = () => {
   return (
@@ -11,8 +12,15 @@ const App = () => {
       <Router>
         <Header />
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/testpage" element={<TestPage />} />
         </Routes>
         <Footer />
