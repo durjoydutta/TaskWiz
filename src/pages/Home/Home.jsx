@@ -81,12 +81,6 @@ const Home = () => {
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      getTasksFromDB();
-    }, 1000);
-  }, [getTasksFromDB]);
-
 
   //previously used when no db was connected
   // const addTask = (newTask) => { 
