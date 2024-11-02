@@ -57,6 +57,10 @@ const Login = () => {
     }
   };
 
+  const goToHome = () => {
+    navigate('/');
+  };
+
   if (isLoading) {
     return (
       <div className="w-full h-screen flex justify-center items-center">
@@ -74,22 +78,34 @@ const Login = () => {
         <h1>Done</h1>
         <h1>Fast!</h1>
       </div>
-      <button
-        onClick={user ? signOut : signInWithGoogle}
-        className="loginbutton font-bold rounded-[3em] text-2xl w-full max-w-xs h-16 
-        bg-[#ffa31a] text-[#222121de] flex justify-start items-center text-center gap-3 shadow-inner shadow-gray-500
-        hover:bg-[#ffb300] transition-colors cursor-pointer px-5 py-2 box-border border-2 border-gray-400"
-        disabled={isLoading}
-      >
-        {user ? (
-          <label className="grow cursor-pointer">Sign Out</label>
-        ) : (
-          <div className="flex gap-2 justify-between w-full">
-            <FaGoogle className="text-3xl" />
-            <label className="grow mr-10 cursor-pointer">Login</label>
-          </div>
+      <div className="flex flex-col gap-4 w-full max-w-xs">
+        {user && (
+          <button
+            onClick={goToHome}
+            className="font-bold rounded-[3em] text-2xl w-full h-16 
+            bg-green-500 text-white flex justify-center items-center text-center gap-3 shadow-inner shadow-gray-500
+            hover:bg-green-600 transition-colors cursor-pointer px-5 py-2 box-border border-2 border-gray-400"
+          >
+            Enter Home
+          </button>
         )}
-      </button>
+        <button
+          onClick={user ? signOut : signInWithGoogle}
+          className="loginbutton font-bold rounded-[3em] text-2xl w-full h-16 
+          bg-[#ffa31a] text-[#222121de] flex justify-start items-center text-center gap-3 shadow-inner shadow-gray-500
+          hover:bg-[#ffb300] transition-colors cursor-pointer px-5 py-2 box-border border-2 border-gray-400"
+          disabled={isLoading}
+        >
+          {user ? (
+            <label className="grow cursor-pointer">Sign Out</label>
+          ) : (
+            <div className="flex gap-2 justify-between w-full">
+              <FaGoogle className="text-3xl" />
+              <label className="grow mr-10 cursor-pointer">Login</label>
+            </div>
+          )}
+        </button>
+      </div>
     </div>
   );
 };
