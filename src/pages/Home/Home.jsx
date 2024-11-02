@@ -37,7 +37,6 @@ const Home = () => {
         email: user?.email,
         phone: user?.phoneNumber,
         providerId: user?.providerId,
-        userMetaData: user.metadata,
       }),
       task: newTask,
       completed: false,
@@ -84,7 +83,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate("/");
+      navigate("/login");
     }
   }, [user, navigate]);
 
