@@ -1,7 +1,7 @@
 import Logo from "../../src/assets/todo.svg";
 import Account from "../assets/account.svg";
 import { Link } from "react-router-dom";
-import { auth } from "../pages/Login";
+import { auth } from "../../firebase.config";
 import {useAuthState} from 'react-firebase-hooks/auth';
 
 function Header() {

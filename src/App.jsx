@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [toDoList, setToDoList] = useState([]);
-  // const [logInStatus, setLoginStatus] = useState(false);
   const newTaskRef = useRef(null);
 
   const handleClick = (e) => {

@@ -1,31 +1,21 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
-import { firebaseApp } from "../../firebase.config";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth } from "../../firebase.config";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
-import { useEffect, useState } from 'react';
+import {useAuthState} from 'react-firebase-hooks/auth';
 
-export const auth = getAuth(firebaseApp);
-export const provider = new GoogleAuthProvider();
+
+const provider = new GoogleAuthProvider();
 
 const Login = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [user] = useAuthState(auth);
 
-  // useEffect(() => {
-  //   // Set up auth state listener
-  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     console.log("Auth state changed:", currentUser);
-  //     setUser(currentUser);
-  //   });
-
-  //   // Cleanup subscription on unmount
-  //   return () => unsubscribe();
-  // }, []);
 
   async function signInWithGoogle() {
     try {
       const result = await signInWithPopup(auth, provider);
-      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const credential = provider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
       console.log("Sign-in successful:", user);
@@ -44,9 +34,9 @@ const Login = () => {
   const signOut = async () => {
     try {
       await auth.signOut();
-      console.log("Sign-out successful");
+      alert("Successfully signed out");
     } catch (error) {
-      console.error("Sign-out error:", error);
+      alert("Error signing you out", error);
     }
   };
 
