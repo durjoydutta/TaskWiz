@@ -1,6 +1,12 @@
 import AddTaskForm from "./components/AddTaskForm";
 import TaskCard from "./components/TaskCard";
 import { Reorder } from "framer-motion";
+import {useAuthState} from 'react-firebase-hooks/auth';
+import { useEffect } from "react";
+import {auth} from '../../../firebase.config'
+import {useNavigate} from 'react-router-dom'
+
+
 
 const Home = ({
   toDoList,
@@ -10,7 +16,14 @@ const Home = ({
   deleteTask,
   toggleComplete,
 }) => {
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   return (
     <>
