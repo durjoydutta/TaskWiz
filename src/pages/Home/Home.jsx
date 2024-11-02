@@ -4,14 +4,12 @@ import { Reorder } from "framer-motion";
 import {useAuthState} from 'react-firebase-hooks/auth';
 import { useState, useEffect, useRef } from "react";
 import {auth, firestoreDB} from '../../../firebase.config'
-import {useNavigate} from 'react-router-dom'
 import { addDoc, collection, getDocs, deleteDoc, updateDoc, doc, query, where } from "firebase/firestore";
 
 
 const Home = () => {
   const [toDoList, setToDoList] = useState([]);
   const [user] = useAuthState(auth);
-  const navigate = useNavigate();
   const newTaskRef = useRef(null); // task ref of new data generated through form by user
   const dbTaskRef = collection(firestoreDB, "Tasks"); // task ref of data generated fetched from db
 

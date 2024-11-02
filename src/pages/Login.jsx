@@ -86,7 +86,7 @@ const Login = () => {
             bg-green-500 text-white flex justify-center items-center text-center gap-3 shadow-inner shadow-gray-500
             hover:bg-green-600 transition-colors cursor-pointer px-5 py-2 box-border border-2 border-gray-400"
           >
-            Enter Home
+            Enter TaskWiz
           </button>
         )}
         <button
