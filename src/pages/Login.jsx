@@ -2,52 +2,45 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
-import {useAuthState} from 'react-firebase-hooks/auth';
-import {useEffect, useRef} from 'react'
-
-const provider = new GoogleAuthProvider();
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect, useState } from "react"; // Added useState
 
 const Login = () => {
-  const navigate = useNavigate();
   const [user] = useAuthState(auth);
-  const signInSuccess = useRef(false);
+  const [signInSuccess, setSignInSuccess] = useState(false);
+  const navigate = useNavigate();
+  const [isAutoLogin, setIsAutoLogin] = useState(true);
+  const googleProvider = new GoogleAuthProvider(); // Create GoogleAuthProvider instance
 
-
-  async function signInWithGoogle() {
+  const signInWithGoogle = async () => {
+    setIsAutoLogin(false);
     try {
-      const result = await signInWithPopup(auth, provider);
-      // const credential = provider.credentialFromResult(result);
-      // const token = credential.accessToken;
-      const user = result.user;
-      console.log("Sign-in successful:", user);
-      navigate("/");
-      signInSuccess(true);
+      await signInWithPopup(auth, googleProvider); // Use googleProvider
+      setSignInSuccess(true);
     } catch (error) {
-      if (error.code === "auth/popup-closed-by-user") {
-        console.log("Sign-in popup closed by user.");
-        alert("Sign-in cancelled. Please try again.");
-      } else {
-        console.error("Sign-in error:", error);
-        // alert("An error occurred during sign-in. Please try again later.");
-      }
-    }
-  }
-
-  const signOut = async () => {
-    try {
-      await auth.signOut();
-      alert("Successfully signed out");
-    } catch (error) {
-      alert("Error signing you out", error);
+      console.error(error);
     }
   };
 
   useEffect(() => {
-    if (user && signInSuccess) {
+    const storedToken = localStorage.getItem("authToken");
+
+    const authenticateWithToken = async () => {
+      try {
+        setSignInSuccess(true);
+      } catch (error) {
+        console.error("Error during automatic login:", error);
+        localStorage.removeItem("authToken");
+      }
+    };
+
+    if (storedToken && !user) {
+      authenticateWithToken();
+    } else if (user && signInSuccess && isAutoLogin) {
       navigate("/");
-      signInSuccess(false);
+      setSignInSuccess(false);
     }
-  }, [user, signInSuccess, navigate]);
+  }, [user, signInSuccess, navigate, isAutoLogin]);
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-[4rem]">
