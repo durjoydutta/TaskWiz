@@ -27,4 +27,4 @@ dist-ssr
 # firebase.config.js
 
 #debug/test pages
-TestDebug.jsx
+# TestDebug.jsx
