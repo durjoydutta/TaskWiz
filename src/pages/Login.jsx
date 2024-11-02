@@ -3,7 +3,7 @@ import { auth } from "../../firebase.config";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import {useAuthState} from 'react-firebase-hooks/auth';
-
+// import {useEffect} from 'react'
 
 const provider = new GoogleAuthProvider();
 
@@ -26,7 +26,7 @@ const Login = () => {
         alert("Sign-in cancelled. Please try again.");
       } else {
         console.error("Sign-in error:", error);
-        alert("An error occurred during sign-in. Please try again later.");
+        // alert("An error occurred during sign-in. Please try again later.");
       }
     }
   }
