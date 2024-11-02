@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import TestPage from './pages/TestPage'
 
 const App = () => {
   const [toDoList, setToDoList] = useState([]);
@@ -64,6 +65,7 @@ const App = () => {
             }
           />
           <Route path="/login" element={<Login/>} />
+          <Route path="/testpage" element={<TestPage/>}/>
         </Routes>
         <Footer />
       </Router>
