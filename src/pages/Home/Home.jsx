@@ -32,12 +32,12 @@ const Home = () => {
       ...(user && {
         userId: user?.uid,
         username: user?.displayName,
-        user: user?.isAnonymous,
-        userEmail: user?.email,
+        anonymous: user?.isAnonymous,
         userPhoto: user?.photoURL,
         email: user?.email,
         phone: user?.phoneNumber,
         providerId: user?.providerId,
+        userMetaData: user.metadata,
       }),
       task: newTask,
       completed: false,
@@ -71,6 +71,7 @@ const Home = () => {
       const targetDocRef = doc(dbTaskRef, id);
       await updateDoc(targetDocRef, {
         completed: !toDoList.find((task) => task.id === id).completed,
+        updatedAt: new Date(),
       });
       console.log('Task updated successfully!');
     } catch (error) {
