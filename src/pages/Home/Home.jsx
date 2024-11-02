@@ -82,10 +82,13 @@ const Home = () => {
   };
 
   useEffect(() => {
+    setTimeout(() => {
+      getTasksFromDB();
+    }, 1000);
     if (!user) {
       navigate("/login");
     }
-  }, [user, navigate]);
+  }, [user, navigate, getTasksFromDB]);
 
 
   //previously used when no db was connected
