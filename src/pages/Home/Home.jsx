@@ -85,10 +85,7 @@ const Home = () => {
     setTimeout(() => {
       getTasksFromDB();
     }, 1000);
-    if (!user) {
-      navigate("/login");
-    }
-  }, [user, navigate, getTasksFromDB]);
+  }, [getTasksFromDB]);
 
 
   //previously used when no db was connected
