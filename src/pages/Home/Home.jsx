@@ -2,22 +2,66 @@ import AddTaskForm from "./components/AddTaskForm";
 import TaskCard from "./components/TaskCard";
 import { Reorder } from "framer-motion";
 import {useAuthState} from 'react-firebase-hooks/auth';
-import { useEffect } from "react";
-import {auth} from '../../../firebase.config'
+import { useState, useEffect, useRef } from "react";
+import {auth, firestoreDB} from '../../../firebase.config'
 import {useNavigate} from 'react-router-dom'
+// import { collection, getDocs } from "firebase/firestore";
+// import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 
-
-const Home = ({
-  toDoList,
-  setToDoList,
-  newTaskRef,
-  handleClick,
-  deleteTask,
-  toggleComplete,
-}) => {
+const Home = () => {
+  const [toDoList, setToDoList] = useState([]);
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
+  const newTaskRef = useRef(null);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const newTask = newTaskRef.current.value;
+    if (newTask === "") {
+      alert("The task entry is empty!");
+      return;
+    }
+    addTask(newTask);
+  };
+
+  const addTask = (newTask) => {
+    const newList = [
+      ...toDoList,
+      {
+        id: crypto.randomUUID(),
+        task: newTask,
+        completed: false,
+      },
+    ];
+    setToDoList(newList);
+    newTaskRef.current.value = "";
+  };
+
+
+  const deleteTask = (id) => {
+    const newList = toDoList.filter((item) => item.id !== id);
+    setToDoList(newList);
+  };
+
+  const toggleComplete = (id) => {
+    setToDoList((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, completed: !item.completed } : item
+      )
+    );
+  };
+
+
+  // const [tasks, setTasks] = useState([]);
+  // const taskRefs = collection(firestoreDB, "Tasks");
+
+  // const getTasksFromDB = async () => {
+  //   const data = await getDocs(taskRefs);
+  //   setTasks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
+  // }
+
+  // getTasksFromDB();
 
   useEffect(() => {
     if (!user) {
