@@ -25,3 +25,6 @@ dist-ssr
 
 #api_config_files
 # firebase.config.js
+
+#debug/test pages
+# TestDebug.jsx

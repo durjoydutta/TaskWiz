@@ -1,7 +1,16 @@
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { motion } from "framer-motion";
+// import * as yup from 'yup';
 
 function AddTaskForm({ handleClick, newTaskRef }) {
+
+  // const schema = yup.object().shape(
+  //   {
+  //     task: yup.string().required("Please enter a task!"),
+  //     tasklength: yup.string().max(100, "Maximum 100 characters allowed!"),
+  //   }
+  // );
+
   return (
     <form 
       id="input-form" 
