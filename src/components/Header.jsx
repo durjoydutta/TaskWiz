@@ -11,7 +11,7 @@ function Header() {
     <div className="header flex flex-col w-full max-w-3xl mt-3 gap-3 px-2">
       <div className="flex items-center justify-between w-full max-w-3xl">
         <div className="flex flex-col items-center justify-center gap-2 mt-3 w-full">
-          <Link to="/">
+          <Link to="/testpage">
             <div className="flex items-center justify-center gap-2 relative">
               <img
                 src={Logo}
