@@ -5,7 +5,7 @@ import {useAuthState} from 'react-firebase-hooks/auth';
 import { useState, useEffect, useRef } from "react";
 import {auth, firestoreDB} from '../../../firebase.config'
 import {useNavigate} from 'react-router-dom'
-import { addDoc, collection, getDocs, deleteDoc, updateDoc, doc } from "firebase/firestore";
+import { addDoc, collection, getDocs, deleteDoc, updateDoc, doc, query, where } from "firebase/firestore";
 
 
 const Home = () => {
@@ -47,10 +47,13 @@ const Home = () => {
   };
 
   const getTasksFromDB = async () => {
-    const data = await getDocs(dbTaskRef);
-    setToDoList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
-    // console.log(toDoList);
-  }
+    if (user) { // Check if user is authenticated
+      const q = query(dbTaskRef, where("userId", "==", user.uid));
+      const data = await getDocs(q); // Execute the query
+      setToDoList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
+  };
+  
 
   getTasksFromDB();
 
