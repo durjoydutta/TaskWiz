@@ -1,6 +1,6 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from "../../firebase.config";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 
@@ -9,7 +9,6 @@ export const provider = new GoogleAuthProvider();
 
 const Login = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,15 +17,10 @@ const Login = () => {
       console.log("Auth state changed:", currentUser);
       setUser(currentUser);
       setIsLoading(false);
-      
-      // If user is already logged in and they're on the login page, redirect to home
-      if (currentUser && location.pathname === '/login') {
-        navigate('/');
-      }
     });
 
     return () => unsubscribe();
-  }, [navigate, location]);
+  }, []);
 
   async function signInWithGoogle() {
     try {
@@ -55,7 +49,7 @@ const Login = () => {
       setIsLoading(true);
       await auth.signOut();
       console.log("Sign-out successful");
-      navigate('/login');
+      setUser(null);
     } catch (error) {
       console.error("Sign-out error:", error);
     } finally {
