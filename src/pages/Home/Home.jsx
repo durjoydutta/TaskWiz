@@ -29,17 +29,16 @@ const Home = () => {
 
   const addTaskToDB = async (newTask) => {
     await addDoc(dbTaskRef, {
-      // ...(user && {
-      //   userId: user?.uid,
-      //   username: user?.displayName,
-      //   user: user?.isAnonymous,
-      //   userEmail: user?.email,
-      //   userPhoto: user?.photoURL,
-      //   email: user?.email,
-      //   phone: user?.phoneNumber,
-      //   providerId: user?.providerId,
-      // }),
-      ...user,
+      ...(user && {
+        userId: user?.uid,
+        username: user?.displayName,
+        user: user?.isAnonymous,
+        userEmail: user?.email,
+        userPhoto: user?.photoURL,
+        email: user?.email,
+        phone: user?.phoneNumber,
+        providerId: user?.providerId,
+      }),
       task: newTask,
       completed: false,
       createdAt: new Date(),
