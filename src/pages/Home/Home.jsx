@@ -5,15 +5,16 @@ import {useAuthState} from 'react-firebase-hooks/auth';
 import { useState, useEffect, useRef } from "react";
 import {auth, firestoreDB} from '../../../firebase.config'
 import {useNavigate} from 'react-router-dom'
-// import { collection, getDocs } from "firebase/firestore";
-// import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { addDoc, collection, getDocs, deleteDoc, updateDoc, doc } from "firebase/firestore";
 
 
 const Home = () => {
   const [toDoList, setToDoList] = useState([]);
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
-  const newTaskRef = useRef(null);
+  const newTaskRef = useRef(null); // task ref of new data generated through form by user
+  const dbTaskRef = collection(firestoreDB, "Tasks"); // task ref of data generated fetched from db
+
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -22,52 +23,82 @@ const Home = () => {
       alert("The task entry is empty!");
       return;
     }
-    addTask(newTask);
-  };
-
-  const addTask = (newTask) => {
-    const newList = [
-      ...toDoList,
-      {
-        id: crypto.randomUUID(),
-        task: newTask,
-        completed: false,
-      },
-    ];
-    setToDoList(newList);
     newTaskRef.current.value = "";
+    addTaskToDB(newTask);
   };
 
-
-  const deleteTask = (id) => {
-    const newList = toDoList.filter((item) => item.id !== id);
-    setToDoList(newList);
+  const addTaskToDB = async (newTask) => {
+    await addDoc(dbTaskRef, {
+      // ...(user && {
+      //   userId: user?.uid,
+      //   username: user?.displayName,
+      //   user: user?.isAnonymous,
+      //   userEmail: user?.email,
+      //   userPhoto: user?.photoURL,
+      //   email: user?.email,
+      //   phone: user?.phoneNumber,
+      //   providerId: user?.providerId,
+      // }),
+      ...user,
+      task: newTask,
+      completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
   };
 
-  const toggleComplete = (id) => {
-    setToDoList((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, completed: !item.completed } : item
-      )
-    );
+  const getTasksFromDB = async () => {
+    const data = await getDocs(dbTaskRef);
+    setToDoList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+    // console.log(toDoList);
+  }
+
+  getTasksFromDB();
+
+
+  const deleteTask = async (id) => {
+    try {
+      const targetDocRef = doc(dbTaskRef, id);
+      await deleteDoc(targetDocRef);
+      console.log('Task deleted successfully!');
+  
+    } catch (error) {
+      console.error('Error deleting task:', error);
+    }
   };
 
-
-  // const [tasks, setTasks] = useState([]);
-  // const taskRefs = collection(firestoreDB, "Tasks");
-
-  // const getTasksFromDB = async () => {
-  //   const data = await getDocs(taskRefs);
-  //   setTasks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
-  // }
-
-  // getTasksFromDB();
+  const toggleComplete = async (id) => {
+    try {
+      const targetDocRef = doc(dbTaskRef, id);
+      await updateDoc(targetDocRef, {
+        completed: !toDoList.find((task) => task.id === id).completed,
+      });
+      console.log('Task updated successfully!');
+    } catch (error) {
+      console.error('Error updating task:', error);
+    }
+  };
 
   useEffect(() => {
     if (!user) {
       navigate("/");
     }
   }, [user, navigate]);
+
+
+  //previously used when no db was connected
+  // const addTask = (newTask) => { 
+  //   const newList = [
+  //     ...toDoList,
+  //     {
+  //       id: crypto.randomUUID(),
+  //       task: newTask,
+  //       completed: false,
+  //     },
+  //   ];
+  //   setToDoList(newList);
+  //   newTaskRef.current.value = "";
+  // };
 
   return (
     <>
